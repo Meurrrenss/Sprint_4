@@ -39,15 +39,15 @@ public class AccordionTest {
     @Before
     public void setUp() {
         driver = new ChromeDriver();
+
+        //соглашаемся с куками
+        driver.get("https://qa-scooter.praktikum-services.ru/");
+        CookiesPage objCookiesPage = new CookiesPage(driver);
+        objCookiesPage.allowCookies();
     }
 
     @Test
     public void checkCreateOrder() {
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-        //соглашаемся с куками
-        CookiesPage objCookiesPage = new CookiesPage(driver);
-        objCookiesPage.allowCookies();
-
         MainPage objMainPage = new MainPage(driver);
         objMainPage.clickQuestions(index);
         String actualAnswer = objMainPage.checkAnswers(index);

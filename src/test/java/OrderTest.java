@@ -44,23 +44,24 @@ public class OrderTest {
     @Before
     public void setUp() {
         driver = new ChromeDriver();
-    }
 
-    @Test
-    public void checkCreateOrder() {
         driver.get("https://qa-scooter.praktikum-services.ru/");
         //соглашаемся с куками
         CookiesPage objCookiesPage = new CookiesPage(driver);
+        objCookiesPage.allowCookies();
+    }
+
+
+    @Test
+    public void checkCreateOrder() {
         MainPage objMainPage = new MainPage(driver);
         OrderPage objOrderPage = new OrderPage(driver);
-        objCookiesPage.allowCookies();
 
         if (orderButton.equals("topOrderButton")) {
             objMainPage.clickTopOrderButton();
         } else if (orderButton.equals("botOrderButton")) {
             objMainPage.clickBotOrderButton();
         }
-
 
         //проверка перехода на первый экран заполнения данных пользоавтеля
         objOrderPage.checkItemsDisplayed();
